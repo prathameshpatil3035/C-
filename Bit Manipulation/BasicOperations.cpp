@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cmath>
 
 using namespace std;
 
@@ -20,9 +21,10 @@ int clearBit(int num, int pos) {
 
 // Function to update a specific bit to a given value (0 or 1)
 int updateBit(int num, int pos, bool bitValue) {
+    // update = clear + set
     int value = bitValue ? 1 : 0;
     int mask = ~(1 << pos);
-    return (num & mask) | (value << pos);
+    return (num & mask) | (value << pos); // value = 0 / 1
 }
 
 // Check if a number is a power of two
@@ -93,6 +95,15 @@ int main() {
     int n = sizeof(arr) / sizeof(arr[0]);
     cout << "Subsets of {1, 2, 3}:" << endl;
     generateSubsets(arr, n);
+
+    //Calculate Number Of Bits
+    int number = 123; // Example number
+    int numBits = 1 + log2(number); // Calculate the number of bits required
+
+    int number = 123; // Example number
+    number ^= -1; // Calculate the one's complement
+
+    cout << "Number: " << number << endl; //-124
 
     return 0;
 }

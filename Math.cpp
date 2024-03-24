@@ -15,6 +15,10 @@ int main() {
     cout << "tan(45 degrees) = " << tan(radians) << endl;
     // Output: tan(45 degrees) = 1
 
+    // Remainder function
+    cout << "remainder(10, 3) = " << remainder(10, 3) << endl;
+    // Output: remainder(10, 3) = 1
+
     // Exponential and Logarithmic Functions
     cout << "log(10) = " << log(10) << endl;
     // Output: log(10) = 2.30259
