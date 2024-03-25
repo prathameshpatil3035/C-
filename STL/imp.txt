@@ -1,0 +1,10 @@
+vector = singly linked list
+list = doubly linked list -> have extra methods like push_front, pop_front
+list = deque -> have almost same functions
+set = sorted + unique
+multiset = sorted
+unordedset = unique -> lower_bound and upper_bound functions do not work
+map = array of pairs -> just like javascript object haveing key, value pairs
+map = unique key + keys in sorted order
+multimap = duplicate keys + keys are sorted
+unordedmap = unique key + keys are not in sorted order
