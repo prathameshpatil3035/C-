@@ -7,4 +7,4 @@ unordedset = unique -> lower_bound and upper_bound functions do not work
 map = array of pairs -> just like javascript object haveing key, value pairs
 map = unique key + keys in sorted order
 multimap = duplicate keys + keys are sorted
-unordedmap = unique key + keys are not in sorted order
+unordedmap = unique key + keys are not in sorted order and key can not be of type pair<int, int>
