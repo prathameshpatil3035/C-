@@ -1,4 +1,27 @@
-    # XOR:  1 ^ 1 = 0 , 0 ^ 0 = 0, 1 ^ 0 = 1, 0 ^ 1 = 1
+And (&) Operator:
+    all true then true
 
-a ^ a = 0;  // a number xor itself the answer should be 0
-a ^ 0 = a;  // a number xor with 0 the answer should be that number
+Or (|) Operator:
+    all false then false
+   
+XOR (^) Operator:
+     1 ^ 1 = 0 , 0 ^ 0 = 0, 1 ^ 0 = 1, 0 ^ 1 = 1
+    => no. of 1s even = 0
+       no. of 1s odd  = 1
+
+    a ^ a = 0;  // a number xor itself the answer should be 0
+    a ^ 0 = a;  // a number xor with 0 the answer should be that number
+
+
+Right Shift Operator (>>):
+    shift bits to the right by k positions
+    x >> k = x/2^k  e.g. => 13 >> 2 = 13 / 2 ^ 2 = 13 / 4 = 3
+
+Left Shift Operator (<<):
+    shift bits to left by k positions
+    x << k = x*2^k  e.g. => 13 << 2 = 13 * 2 ^ 2 = 13 * 4 = 52
+
+Not (~) Operator:
+    alter the bits. e.g. 1010 = 0101
+    ~positive no = - (number + 1) e.g. ~(5) = -6
+    ~negative no = number - 1 e.g. ~(-6) = 5
