@@ -1,6 +1,8 @@
 #include <iostream>
 #include <queue>
-#include <stack>
+#include <vector>
+#include <limits>
+#include <stdexcept>
 
 using namespace std;
 
@@ -10,267 +12,231 @@ public:
     Node* left;
     Node* right;
 
-    Node(int value) : data(value), left(nullptr), right(nullptr) {}
+    Node(int value) {
+        data = value;
+        left = nullptr;
+        right = nullptr;
+    }
 };
 
 class BST {
 private:
     Node* root;
 
-    // Private helper methods
-    Node* insertRecursive(Node* root, int value);
-    Node* deleteRecursive(Node* root, int value);
-    Node* findMin(Node* root);
-    Node* findMax(Node* root);
-    bool isBSTUtil(Node* root, int min, int max);
-    void inOrderRecursive(Node* root);
-    void preOrderRecursive(Node* root);
-    void postOrderRecursive(Node* root);
-
-public:
-    BST() : root(nullptr) {}
-
-    // Public methods
-    void insert(int value);
-    void remove(int value);
-    int height();
-    void levelOrder();
-    void inOrder();
-    void preOrder();
-    void postOrder();
-    int minValue();
-    int maxValue();
-    bool isBST();
-    Node* successor(int value);
-};
-
-// Insertion
-Node* BST::insertRecursive(Node* root, int value) {
-    if (root == nullptr) {
-        return new Node(value);
-    }
-
-    if (value < root->data) {
-        root->left = insertRecursive(root->left, value);
-    } else if (value > root->data) {
-        root->right = insertRecursive(root->right, value);
-    }
-
-    return root;
-}
-
-void BST::insert(int value) {
-    root = insertRecursive(root, value);
-}
-
-// Deletion
-Node* BST::deleteRecursive(Node* root, int value) {
-    if (root == nullptr) {
-        return nullptr;
-    }
-
-    if (value < root->data) {
-        root->left = deleteRecursive(root->left, value);
-    } else if (value > root->data) {
-        root->right = deleteRecursive(root->right, value);
-    } else {
-        // Case 1: No child or only one child
-        if (root->left == nullptr) {
-            Node* temp = root->right;
-            delete root;
-            return temp;
-        } else if (root->right == nullptr) {
-            Node* temp = root->left;
-            delete root;
-            return temp;
+    Node* insertRecursive(Node* root, int value) {
+        if (root == nullptr) {
+            return new Node(value);
         }
 
-        // Case 2: Two children
-        Node* temp = findMin(root->right);
-        root->data = temp->data;
-        root->right = deleteRecursive(root->right, temp->data);
+        if (value < root->data) {
+            root->left = insertRecursive(root->left, value);
+        } else if (value > root->data) {
+            root->right = insertRecursive(root->right, value);
+        }
+
+        return root;
     }
-    return root;
-}
 
-void BST::remove(int value) {
-    root = deleteRecursive(root, value);
-}
+    Node* searchRecursive(Node* root, int value) {
+        if (root == nullptr || root->data == value) {
+            return root;
+        }
 
-// Helper function to find minimum value node in a subtree
-Node* BST::findMin(Node* root) {
-    if (root == nullptr) {
-        return nullptr;
+        if (value < root->data) {
+            return searchRecursive(root->left, value);
+        } else {
+            return searchRecursive(root->right, value);
+        }
     }
-    while (root->left != nullptr) {
-        root = root->left;
+
+    Node* deleteRecursive(Node* root, int value) {
+        if (root == nullptr) {
+            return nullptr;
+        }
+
+        if (value < root->data) {
+            root->left = deleteRecursive(root->left, value);
+        } else if (value > root->data) {
+            root->right = deleteRecursive(root->right, value);
+        } else {
+            if (root->left == nullptr) {
+                Node* temp = root->right;
+                delete root;
+                return temp;
+            } else if (root->right == nullptr) {
+                Node* temp = root->left;
+                delete root;
+                return temp;
+            }
+
+            Node* temp = findMin(root->right);
+            root->data = temp->data;
+            root->right = deleteRecursive(root->right, temp->data);
+        }
+        return root;
     }
-    return root;
-}
 
-// Helper function to find maximum value node in a subtree
-Node* BST::findMax(Node* root) {
-    if (root == nullptr) {
-        return nullptr;
+    Node* findMin(Node* root) {
+        while (root && root->left != nullptr) {
+            root = root->left;
+        }
+        return root;
     }
-    while (root->right != nullptr) {
-        root = root->right;
+
+    Node* findMax(Node* root) {
+        while (root && root->right != nullptr) {
+            root = root->right;
+        }
+        return root;
     }
-    return root;
-}
 
-// Height of tree
-int max(int a, int b) {
-    return (a > b) ? a : b;
-}
-
-int BST::height() {
-    if (root == nullptr) {
-        return 0;
+    int heightRecursive(Node* root) {
+        if (root == nullptr) {
+            return -1;
+        }
+        int leftHeight = heightRecursive(root->left);
+        int rightHeight = heightRecursive(root->right);
+        return max(leftHeight, rightHeight) + 1;
     }
-    queue<Node*> q;
-    q.push(root);
-    int height = 0;
 
-    while (!q.empty()) {
-        int nodeCount = q.size();
-        height++;
+    void inOrderRecursive(Node* root, vector<int>& result) {
+        if (root != nullptr) {
+            inOrderRecursive(root->left, result);
+            result.push_back(root->data);
+            inOrderRecursive(root->right, result);
+        }
+    }
 
-        while (nodeCount > 0) {
+    void preOrderRecursive(Node* root, vector<int>& result) {
+        if (root != nullptr) {
+            result.push_back(root->data);
+            preOrderRecursive(root->left, result);
+            preOrderRecursive(root->right, result);
+        }
+    }
+
+    void postOrderRecursive(Node* root, vector<int>& result) {
+        if (root != nullptr) {
+            postOrderRecursive(root->left, result);
+            postOrderRecursive(root->right, result);
+            result.push_back(root->data);
+        }
+    }
+
+    bool isBSTUtil(Node* root, int min, int max) {
+        if (root == nullptr) {
+            return true;
+        }
+
+        if (root->data < min || root->data > max) {
+            return false;
+        }
+
+        return isBSTUtil(root->left, min, root->data - 1) &&
+               isBSTUtil(root->right, root->data + 1, max);
+    }
+
+public:
+    BST() {
+        root = nullptr;
+    }
+
+    void insert(int value) {
+        root = insertRecursive(root, value);
+    }
+
+    bool search(int value) {
+        return searchRecursive(root, value) != nullptr;
+    }
+
+    void remove(int value) {
+        root = deleteRecursive(root, value);
+    }
+
+    int findMin() {
+        Node* minNode = findMin(root);
+        if (minNode != nullptr) {
+            return minNode->data;
+        }
+        throw runtime_error("Tree is empty");
+    }
+
+    int findMax() {
+        Node* maxNode = findMax(root);
+        if (maxNode != nullptr) {
+            return maxNode->data;
+        }
+        throw runtime_error("Tree is empty");
+    }
+
+    int height() {
+        return heightRecursive(root);
+    }
+
+    vector<int> levelOrder() {
+        vector<int> result;
+        if (root == nullptr) {
+            return result;
+        }
+
+        queue<Node*> q;
+        q.push(root);
+
+        while (!q.empty()) {
             Node* current = q.front();
             q.pop();
+            result.push_back(current->data);
             if (current->left != nullptr) {
                 q.push(current->left);
             }
             if (current->right != nullptr) {
                 q.push(current->right);
             }
-            nodeCount--;
         }
-    }
-    return height;
-}
-
-// Traversal - Level order
-void BST::levelOrder() {
-    if (root == nullptr) {
-        return;
+        return result;
     }
 
-    queue<Node*> q;
-    q.push(root);
+    vector<int> inOrder() {
+        vector<int> result;
+        inOrderRecursive(root, result);
+        return result;
+    }
 
-    while (!q.empty()) {
-        Node* current = q.front();
-        q.pop();
-        cout << current->data << " ";
+    vector<int> preOrder() {
+        vector<int> result;
+        preOrderRecursive(root, result);
+        return result;
+    }
 
-        if (current->left != nullptr) {
-            q.push(current->left);
+    vector<int> postOrder() {
+        vector<int> result;
+        postOrderRecursive(root, result);
+        return result;
+    }
+
+    bool isBST() {
+        return isBSTUtil(root, numeric_limits<int>::min(), numeric_limits<int>::max());
+    }
+
+    Node* successor(int value) {
+        Node* current = root;
+        Node* successor = nullptr;
+
+        while (current != nullptr) {
+            if (current->data > value) {
+                successor = current;
+                current = current->left;
+            } else {
+                current = current->right;
+            }
         }
-        if (current->right != nullptr) {
-            q.push(current->right);
-        }
+        return successor;
     }
-    cout << endl;
-}
+};
 
-// Traversal - Inorder (DFS)
-void BST::inOrderRecursive(Node* root) {
-    if (root != nullptr) {
-        inOrderRecursive(root->left);
-        cout << root->data << " ";
-        inOrderRecursive(root->right);
-    }
-}
-
-void BST::inOrder() {
-    inOrderRecursive(root);
-    cout << endl;
-}
-
-// Traversal - Preorder (DFS)
-void BST::preOrderRecursive(Node* root) {
-    if (root != nullptr) {
-        cout << root->data << " ";
-        preOrderRecursive(root->left);
-        preOrderRecursive(root->right);
-    }
-}
-
-void BST::preOrder() {
-    preOrderRecursive(root);
-    cout << endl;
-}
-
-// Traversal - Postorder (DFS)
-void BST::postOrderRecursive(Node* root) {
-    if (root != nullptr) {
-        postOrderRecursive(root->left);
-        postOrderRecursive(root->right);
-        cout << root->data << " ";
-    }
-}
-
-void BST::postOrder() {
-    postOrderRecursive(root);
-    cout << endl;
-}
-
-// Minimum and Maximum value
-int BST::minValue() {
-    Node* minNode = findMin(root);
-    if (minNode != nullptr) {
-        return minNode->data;
-    }
-    throw runtime_error("Tree is empty");
-}
-
-int BST::maxValue() {
-    Node* maxNode = findMax(root);
-    if (maxNode != nullptr) {
-        return maxNode->data;
-    }
-    throw runtime_error("Tree is empty");
-}
-
-// Check if BST
-bool BST::isBSTUtil(Node* root, int min, int max) {
-    if (root == nullptr) {
-        return true;
-    }
-
-    if (root->data < min || root->data > max) {
-        return false;
-    }
-
-    return (isBSTUtil(root->left, min, root->data - 1) &&
-            isBSTUtil(root->right, root->data + 1, max));
-}
-
-bool BST::isBST() {
-    return isBSTUtil(root, INT_MIN, INT_MAX);
-}
-
-// Successor in BST
-Node* BST::successor(int value) {
-    Node* current = root;
-    Node* successor = nullptr;
-
-    while (current != nullptr) {
-        if (current->data > value) {
-            successor = current;
-            current = current->left;
-        } else {
-            current = current->right;
-        }
-    }
-    return successor;
-}
-
+// Usage
 int main() {
     BST tree;
-
     tree.insert(50);
     tree.insert(30);
     tree.insert(20);
@@ -279,37 +245,56 @@ int main() {
     tree.insert(60);
     tree.insert(80);
 
+    // Searching for a value
+    int searchValue = 60;
+    bool isFound = tree.search(searchValue);
+    cout << "Search for " << searchValue << ": " << (isFound ? "Node found" : "Node not found") << endl;
+
+    vector<int> levelOrder = tree.levelOrder();
     cout << "Level Order Traversal: ";
-    tree.levelOrder();
+    for (int val : levelOrder) {
+        cout << val << " ";
+    }
+    cout << endl;
 
+    vector<int> inOrder = tree.inOrder();
     cout << "Inorder Traversal: ";
-    tree.inOrder();
+    for (int val : inOrder) {
+        cout << val << " ";
+    }
+    cout << endl;
 
+    vector<int> preOrder = tree.preOrder();
     cout << "Preorder Traversal: ";
-    tree.preOrder();
+    for (int val : preOrder) {
+        cout << val << " ";
+    }
+    cout << endl;
 
+    vector<int> postOrder = tree.postOrder();
     cout << "Postorder Traversal: ";
-    tree.postOrder();
+    for (int val : postOrder) {
+        cout << val << " ";
+    }
+    cout << endl;
 
     cout << "Height of the tree: " << tree.height() << endl;
-
-    cout << "Minimum value: " << tree.minValue() << endl;
-    cout << "Maximum value: " << tree.maxValue() << endl;
-
+    cout << "Minimum value: " << tree.findMin() << endl;
+    cout << "Maximum value: " << tree.findMax() << endl;
     cout << "Is BST: " << (tree.isBST() ? "Yes" : "No") << endl;
 
     int value = 30;
     Node* successor = tree.successor(value);
-    if (successor != nullptr) {
-        cout << "Successor of " << value << ": " << successor->data << endl;
-    } else {
-        cout << "No successor found for " << value << endl;
-    }
+    cout << "Successor of " << value << ": " << (successor ? to_string(successor->data) : "No successor found") << endl;
 
     // Deleting a node
     tree.remove(20);
+    inOrder = tree.inOrder();
     cout << "Inorder Traversal after deleting 20: ";
-    tree.inOrder();
+    for (int val : inOrder) {
+        cout << val << " ";
+    }
+    cout << endl;
 
     return 0;
 }
