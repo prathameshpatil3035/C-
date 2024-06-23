@@ -25,3 +25,24 @@ Not (~) Operator:
     alter the bits. e.g. 1010 = 0101
     ~positive no = - (number + 1) e.g. ~(5) = -6
     ~negative no = number - 1 e.g. ~(-6) = 5
+
+If n has right most set bit at index i then n-1 has 0 at that index and after that all index will have 1 at right
+    16 = 10000 15 = 01111
+    32 = 100000 = 01111
+    40 = 101000 = 100111
+
+if n is power of 2 the it has only 1 set bit
+    32 = 100000
+    8 = 1000
+    16 = 10000
+
+If n is odd number its 0th index bit always 1 so n & 1 = 1
+    13 & 1 = 1101 & 0001 = 0001 = 1
+    23 & 1 = 10111 & 00001 = 00001 = 1
+
+If n is even number its 0th index bit always 0 so n & 1 = 0
+    8 & 1 = 1000 & 0001 = 0000 = 0
+    12 & 1 = 1100 & 0001 = 0000 = 0
+
+n/2 = n >> 1
+n*2 = n << 1
