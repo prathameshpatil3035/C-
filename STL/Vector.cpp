@@ -183,11 +183,11 @@ vector<int> myVector2(5, 10);
     // Iterators
     // begin(): Returns an iterator to the beginning
     auto itBegin = myVector.begin();
-    // end(): Returns an iterator to the end
+    // end(): Returns an iterator to the end (point to the next position after last element in vector).
     auto itEnd = myVector.end();
     // rbegin(): Returns a reverse iterator to the beginning
     auto ritBegin = myVector.rbegin();
-    // rend(): Returns a reverse iterator to the end
+    // rend(): Returns a reverse iterator to the endrend(): Returns a reverse iterator to the end. (point to the previous position before first element in vector).
     auto ritEnd = myVector.rend();
 
     // Output the elements using iterators

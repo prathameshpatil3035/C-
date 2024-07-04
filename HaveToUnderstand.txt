@@ -1,0 +1,55 @@
+inline
+extern
+static
+#define
+#ifdef
+#ifndef
+#if #elif #else
+#pragma once
+mutable
+const
+struct
+enum unscoped, scoped
+class - constructor, destructor, virtual function, pure virtual function, override, friend, member initializer list, explicit
+new
+delete
+size_t
+
+
+Visibility:
+
+(Base-> Derived1-> Derived2-> Derived3)
+
+Public Members of Base:
+
+    Public members of the Base class (publicMethod) remain public in Derived1, Derived2, and Derived3.
+    Accessible in Derived3.
+
+Protected Members of Base:
+
+    Protected members of the Base class (protectedMethod) remain protected in Derived1, Derived2, and Derived3.
+    Accessible within Derived3 member functions.
+
+Private Members of Base:
+
+    Private members of the Base class (privateMethod) are not accessible in Derived1, Derived2, or Derived3.
+    Not accessible in Derived3.
+
+inheritance visibility:
+1.Public Inheritance:
+
+    Public members of the base class remain public in the derived class.
+    Protected members of the base class remain protected in the derived class.
+    Private members of the base class are inaccessible in the derived class.
+
+2.Protected Inheritance:
+
+    Public members of the base class become protected in the derived class.
+    Protected members of the base class remain protected in the derived class.
+    Private members of the base class are inaccessible in the derived class.
+
+3.Private Inheritance:
+
+    Public members of the base class become private in the derived class.
+    Protected members of the base class become private in the derived class.
+    Private members of the base class are inaccessible in the derived class.

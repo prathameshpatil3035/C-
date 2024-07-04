@@ -15,7 +15,7 @@ Stacks and Queues
 
 solutions: 
 map, set
-two pointers 1 = first 2 = last or 1 = first 2 = first (move 1 if exeeds move 2 keep in renge)
+two pointers 1 = first 2 = last or 1 = first 2 = first (move 1 if exeeds, move 2, keep in renge)
 Sum
 Hashing
 xor
