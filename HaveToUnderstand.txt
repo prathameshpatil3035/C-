@@ -10,10 +10,17 @@ mutable
 const
 struct
 enum unscoped, scoped
-class - constructor, destructor, virtual function, pure virtual function, override, friend, member initializer list, explicit
+class - constructor, destructor, virtual function, override, pure virtual function / Interface,, virtual destructor, friend, member initializer list, explicit, this, copy constructor 
 new
 delete
 size_t
+operator overloading
+raw, smart ptr
+unique_ptr
+shared_ptr
+weak_ptr
+deep, shallow copy
+template
 
 
 Visibility:
