@@ -1,4 +1,16 @@
+// The Factory Design Pattern is a creational design pattern that provides an interface for creating objects in a superclass, but allows subclasses to alter the type of objects that will be created. It deals with the problem of creating objects without specifying the exact class of object that will be created.
+
+// Explanation
+// The Factory Pattern typically involves the following components:
+
+// Product: The interface or abstract class that defines the object type to be created.
+// ConcreteProduct: Classes that implement the Product interface.
+// Creator: The factory class that declares the factory method, which returns a Product object. It may also define a default implementation of the factory method.
+// ConcreteCreator: Subclasses that override the factory method to return instances of ConcreteProduct.
+
+
 #include <iostream>
+using namespace std;
 
 // Product interface
 class Shape {
@@ -11,7 +23,7 @@ public:
 class Circle : public Shape {
 public:
     void draw() const override {
-        std::cout << "Drawing a Circle" << std::endl;
+        cout << "Drawing a Circle" << endl;
     }
 };
 
@@ -19,7 +31,7 @@ public:
 class Square : public Shape {
 public:
     void draw() const override {
-        std::cout << "Drawing a Square" << std::endl;
+        cout << "Drawing a Square" << endl;
     }
 };
 
@@ -27,11 +39,11 @@ public:
 class Triangle : public Shape {
 public:
     void draw() const override {
-        std::cout << "Drawing a Triangle" << std::endl;
+        cout << "Drawing a Triangle" << endl;
     }
 };
 
-// Factory Class
+// Factory Class /  Creator class (also acts as ConcreteCreator here)
 class ShapeFactory {
 public:
     enum ShapeType {
@@ -54,8 +66,30 @@ public:
     }
 };
 
+// Creator class
+// class AnimalFactory {
+// public:
+//     virtual Animal* createAnimal() const = 0;
+//     virtual ~AnimalFactory() = default;
+// };
+
+// ConcreteCreator for Dog
+// class DogFactory : public AnimalFactory {
+// public:
+//     Animal* createAnimal() const override {
+//         return new Dog();
+//     }
+// };
+
+// ConcreteCreator for Cat
+// class CatFactory : public AnimalFactory {
+// public:
+//     Animal* createAnimal() const override {
+//         return new Cat();
+//     }
+// };
+
 int main() {
-    using namespace std; // Use the standard namespace
 
     ShapeFactory factory;
 

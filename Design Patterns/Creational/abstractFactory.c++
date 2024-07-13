@@ -1,5 +1,18 @@
+// The Abstract Factory Design Pattern is a creational design pattern that provides an interface for creating families of related or dependent objects without specifying their concrete classes. This pattern allows you to produce different types of products using a single interface, promoting consistency among products of the same family and supporting the creation of families of related objects.
+
+// Explanation
+// The Abstract Factory Pattern typically involves the following components:
+
+// AbstractFactory: An interface for creating abstract product families.
+// ConcreteFactory: Classes that implement the AbstractFactory interface to create specific product families.
+// AbstractProduct: An interface for a type of product.
+// ConcreteProduct: Classes that implement the AbstractProduct interface.
+// Client: Uses the AbstractFactory to create objects and interact with them through their interfaces.
+
+
 #include <iostream>
 #include <string>
+
 using namespace std;
 
 // Abstract Product: Button
@@ -20,7 +33,7 @@ public:
 class WinButton : public Button {
 public:
     void press() const override {
-        std::cout << "Windows Button pressed" << std::endl;
+        cout << "Windows Button pressed" << endl;
     }
 };
 
@@ -28,7 +41,7 @@ public:
 class WinTextBox : public TextBox {
 public:
     void show() const override {
-        std::cout << "Windows TextBox showing" << std::endl;
+        cout << "Windows TextBox showing" << endl;
     }
 };
 
@@ -36,7 +49,7 @@ public:
 class MacButton : public Button {
 public:
     void press() const override {
-        std::cout << "Mac Button pressed" << std::endl;
+        cout << "Mac Button pressed" << endl;
     }
 };
 
@@ -44,18 +57,17 @@ public:
 class MacTextBox : public TextBox {
 public:
     void show() const override {
-        std::cout << "Mac TextBox showing" << std::endl;
+        cout << "Mac TextBox showing" << endl;
     }
 };
 
-//Factory Interface
-class IFactory{
-    public:
-        virtual Button* createButton() const = 0;
-        virtual TextBox* createTextBox() const = 0;
-        virtual ~IFactory() = default;
+// Abstract Factory Interface
+class IFactory {
+public:
+    virtual Button* createButton() const = 0;
+    virtual TextBox* createTextBox() const = 0;
+    virtual ~IFactory() = default;
 };
-
 
 // Concrete Factory: Windows Factory
 class WinFactory : public IFactory {
@@ -83,7 +95,7 @@ public:
 class GUIFactory {
 public:
     // Static method to create the appropriate factory
-    static IFactory* createFactory(const std::string& osType) {
+    static IFactory* createFactory(const string& osType) {
         if (osType == "Windows") {
             return new WinFactory();
         } else if (osType == "Mac") {
@@ -94,20 +106,30 @@ public:
     }
 };
 
-int main() {
+// Client Code
+void clientCode(const IFactory& factory) {
+    Button* button = factory.createButton();
+    TextBox* textBox = factory.createTextBox();
 
+    button->press();
+    textBox->show();
+
+    delete button;
+    delete textBox;
+}
+
+int main() {
     string osType;
     cout << "Enter OS type (Windows/Mac): ";
     cin >> osType;
 
-    GUIFactory guiFactory;
-    const IFactory* const ifactory = GUIFactory::createFactory(osType);
-
-    const Button* button = ifactory->createButton();
-    button->press();
-
-    const TextBox* textBox = ifactory->createTextBox();
-    textBox->show();
+    IFactory* factory = GUIFactory::createFactory(osType);
+    if (factory) {
+        clientCode(*factory);
+        delete factory;
+    } else {
+        cout << "Unknown OS type" << endl;
+    }
 
     return 0;
 }
