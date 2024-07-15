@@ -41,17 +41,18 @@
 
 #include <iostream>
 #include <vector>
+#include <utility>
 
 using namespace std;
 
 int main() {
 
-// Constructs an empty vector
-vector<int> myVector;
-// Constructs the vector with 5 copies of elements with value 10
-vector<int> myVector2(5, 10);
+    // Constructs an empty vector
+    vector<int> myVector;
+    // Constructs the vector with 5 copies of elements with value 10
+    vector<int> myVector2(5, 10);
 
- // Create a vector
+    // Create a vector
     vector<int> myVector = {10, 20, 30, 40, 50};
 
     // Access the element at index using operator[]
@@ -79,7 +80,7 @@ vector<int> myVector2(5, 10);
     cout << "Data pointer: " << dataArray << endl; // Output: Data pointer: 0x...
 
 
- vector<int> myVector;
+    vector<int> myVector;
 
     // push_back(): Adds an element to the end
     myVector.push_back(10);
@@ -105,6 +106,7 @@ vector<int> myVector2(5, 10);
 
     // insert(): Inserts elements at a specified position
     myVector.insert(myVector.begin() + 1, 15); // Insert 15 at position 1
+    myVector.insert(myVector.begin() + 2, {16, 17, 18}); // Insert more than one elements
 
     // Output after insert()
     cout << "After insert(): ";
@@ -115,6 +117,7 @@ vector<int> myVector2(5, 10);
 
     // erase(): Removes elements from a specified position or range
     myVector.erase(myVector.begin() + 1); // Erase element at position 1
+    myVector.erase(myVector.begin() + 1, myVector.begin() + 3); // Erase more than one elements
 
     // Output after erase()
     cout << "After erase(): ";
@@ -135,6 +138,9 @@ vector<int> myVector2(5, 10);
 
     // emplace(): Constructs and inserts elements at a specified position
     myVector.emplace(myVector.begin(), 5); // Insert 5 at the beginning
+
+    vector<pair<int, int>> vec;
+    vec.emplace(vec.begin(), 1, 2); // Constructs a pair<int, int>(1, 2) at the beginning of the vector
 
     // Output after emplace()
     cout << "After emplace(): ";
@@ -170,7 +176,7 @@ vector<int> myVector2(5, 10);
     cout << "Vector size: " << vectorSize << endl; // Output: Vector size: 5
 
     // empty(): Checks if the vector is empty
-    bool isEmpty = myVector.empty();
+    bool isEmpty = myVector.empty();    
     cout << "Is vector empty? " << (isEmpty ? "Yes" : "No") << endl; // Output: Is vector empty? No
 
     // reserve(): Requests that the vector capacity be at least enough to contain n elements

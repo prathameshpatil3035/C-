@@ -64,8 +64,8 @@ int main(){
     vect.resize(rows, vector<int>(cols, defaultValue));
 
     // Print the 2D vector
-    for (const auto& row : vect) {
-        for (int val : row) {
+    for (const auto& row : vect) { // extract pointer of rows vector
+        for (int val : row) {      // Iterate vector of cols 
             cout << val << " ";
         }
         cout << endl;
