@@ -21,6 +21,10 @@ shared_ptr
 weak_ptr
 deep, shallow copy
 template
+renge base for loop
+structured bindings
+using
+typedef
 
 
 Visibility:

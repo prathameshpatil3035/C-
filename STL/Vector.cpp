@@ -42,6 +42,7 @@
 #include <iostream>
 #include <vector>
 #include <utility>
+#include <algorithm>
 
 using namespace std;
 
@@ -195,6 +196,18 @@ int main() {
     auto ritBegin = myVector.rbegin();
     // rend(): Returns a reverse iterator to the endrend(): Returns a reverse iterator to the end. (point to the previous position before first element in vector).
     auto ritEnd = myVector.rend();
+
+    // swap indexes : takes elements as arguments
+    swap(myVector[3], myVector[6]); //swap indexe elements 3 and 6
+
+    //reverse vector : : takes iterators as arguments
+    reverse(vec.begin(), vec.end()); //include algorithm file
+
+    vector<int> vec = {1, 2, 3, 4, 5};
+    vector<int> reversed_vec(vec.size());
+
+    // Reverse the vector into a new vector
+    reverse_copy(vec.begin(), vec.end(), reversed_vec.begin());
 
     // Output the elements using iterators
     cout << "Elements using iterators: ";
