@@ -19,6 +19,12 @@ int main() {
     }
     cout << endl;
 
+    // range-based for loop with structured binding
+    for (const auto& [key, value] : myMap) {
+        cout << "Key: " << key << ", Value: " << value << endl;
+    }
+    cout << endl;
+
     // empty
     cout << "Is map empty? " << (myMap.empty() ? "Yes" : "No") << endl; // Output: Is map empty? No
 
