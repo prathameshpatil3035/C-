@@ -19,7 +19,7 @@ set -> logn
 
 solutions: 
 map, set (unique)
-INT_MAX array with default value
+Hashing - INT_MAX array with default value
 (visited array)same array with respective index as element to mark it as visited 
 two pointers 1 = first 2 = last or 1 = first 2 = first (move 1 if exeeds, move 2, keep in renge)
 Sum

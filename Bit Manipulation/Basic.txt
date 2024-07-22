@@ -12,6 +12,10 @@ XOR (^) Operator:
     a ^ a = 0;  // a number xor itself the answer should be 0
     a ^ 0 = a;  // a number xor with 0 the answer should be that number
 
+    [ 1, 1, 2, 2, 3, 3, 4, 5, 5 ]
+        0 ^   0  ^  0 ^ 4  ^ 0 
+        0 ^ 4 = 4
+
 
 Right Shift Operator (>>):
     shift bits to the right by k positions
