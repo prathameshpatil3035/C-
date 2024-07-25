@@ -15,7 +15,7 @@
 // Modifiers:
 
 // clear(): Clears the contents of the string.
-// erase(): Erases a portion of the string.
+// erase(): Erases a portion of the string. not include last iterator in case of iterator. include last index in case of index
 // insert(): Inserts characters into the string.
 // replace(): Replaces a portion of the string with another string.
 // Element Access:

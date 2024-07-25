@@ -13,14 +13,16 @@ Backtracking
 Stacks and Queues
 
 time complexity:
-sort -> nlogn
-set -> logn
-
+map -> insert = O(log n), search = O(log n), erase = O(log n), clar =  O(n), unordered map for all case = O(n) but for bestcase in insert, search, erase  O(1), multimap = map for Time Complexity
+sort -> O(n log n)
+set -> insert = O(log n), search = O(log n), erase = O(log n), clar =  O(n), unordered set for all case = O(n) but for bestcase in insert, search, erase  O(1), multiset = set for Time Complexity
+pair for all operations O(1)
 
 solutions: 
 map, set (unique)
 Hashing - INT_MAX array with default value
 (visited array)same array with respective index as element to mark it as visited 
+sum array till the ith index
 two pointers 1 = first 2 = last or 1 = first 2 = first (move 1 if exeeds, move 2, keep in renge)
 Sum
 Hashing

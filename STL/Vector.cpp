@@ -15,7 +15,7 @@
 // push_back(): Adds an element to the end.
 // pop_back(): Removes the last element.
 // insert(): Inserts elements at a specified position.
-// erase(): Removes elements from a specified position or range.
+// erase(): Removes elements from a specified position or range. not inclusive last iterator (before last iterator)
 // clear(): Removes all elements.
 // emplace(): Constructs and inserts elements at a specified position.
 // emplace_back(): Constructs and adds an element to the end.
@@ -118,7 +118,7 @@ int main() {
 
     // erase(): Removes elements from a specified position or range
     myVector.erase(myVector.begin() + 1); // Erase element at position 1
-    myVector.erase(myVector.begin() + 1, myVector.begin() + 3); // Erase more than one elements
+    myVector.erase(myVector.begin() + 1, myVector.begin() + 3); // Erase more than one elements not inclusive last iterator (before last iterator)
 
     // Output after erase()
     cout << "After erase(): ";
