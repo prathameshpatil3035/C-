@@ -24,6 +24,7 @@ Hashing - INT_MAX array with default value
 (visited array)same array with respective index as element to mark it as visited 
 sum array till the ith index
 two pointers 1 = first 2 = last or 1 = first 2 = first (move 1 if exeeds, move 2, keep in renge)
+three pointers (low, mid, high)
 Sum
 Hashing
 xor
