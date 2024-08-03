@@ -3,7 +3,8 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     // Constructor
     unordered_map<int, string> myMap;
 
@@ -14,7 +15,8 @@ int main() {
 
     // Output: Map elements after insert: {1: One}, {2: Two}, {3: Three}
     cout << "Map elements after insert: ";
-    for (auto& entry : myMap) {
+    for (auto &entry : myMap)
+    {
         cout << "{" << entry.first << ": " << entry.second << "}, ";
     }
     cout << endl;
@@ -27,9 +29,12 @@ int main() {
 
     // find
     auto it = myMap.find(2);
-    if (it != myMap.end()) {
+    if (it != myMap.end())
+    {
         cout << "Found key 2 in the map with value: " << it->second << endl; // Output: Found key 2 in the map with value: Two
-    } else {
+    }
+    else
+    {
         cout << "Key 2 not found in the map" << endl;
     }
 
@@ -41,7 +46,8 @@ int main() {
 
     // Output: Map elements after erase: {2: Two}, {3: Three}
     cout << "Map elements after erase: ";
-    for (auto& entry : myMap) {
+    for (auto &entry : myMap)
+    {
         cout << "{" << entry.first << ": " << entry.second << "}, ";
     }
     cout << endl;

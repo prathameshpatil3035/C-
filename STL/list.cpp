@@ -6,7 +6,7 @@ using namespace std;
 int main() {
     // Constructor(s)
     list<int> mylist1; // Empty list
-    list<int> mylist2(5); // List with 5 default-initialized elements
+    list<int> mylist2(5); // List with 5 default-initialized elements to 0
     list<int> mylist3(3, 7); // List with 3 elements with value 7
     list<int> mylist4(mylist3); // Copy constructor
     list<int> mylist5(mylist3.begin(), mylist3.end()); // List constructed from another list's iterators

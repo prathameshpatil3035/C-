@@ -161,7 +161,7 @@ int main() {
     cout << endl;
 
     // resize(): Changes the size of the vector
-    myVector.resize(3); // Resize to 3 elements
+    myVector.resize(3); // Resize to 3 elements with default value 0 for not initialized numbers (expect previous numbers)
 
     // Output after resize()
     cout << "After resize(): ";

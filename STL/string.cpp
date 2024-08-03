@@ -17,6 +17,7 @@
 // clear(): Clears the contents of the string.
 // erase(): Erases a portion of the string. not include last iterator in case of iterator. include last index in case of index
 // insert(): Inserts characters into the string.
+// empty(): Checks if the string is empty.
 // replace(): Replaces a portion of the string with another string.
 // Element Access:
 
@@ -29,7 +30,7 @@
 
 // length(): Returns the length of the string.
 // size(): Returns the length of the string.
-// substr(): Returns a substring.
+// substr(): Returns a substring. str.substr(index, length)
 // find(): Searches for a substring.
 // rfind(): Searches for a substring from the end.
 // compare(): Compares two strings.
@@ -46,7 +47,6 @@
 // rend(): Returns a reverse iterator to the end.
 // Capacity:
 
-// empty(): Checks if the string is empty.
 // reserve(): Requests that the string capacity be at least enough to contain n characters.
 // capacity(): Returns the capacity of the string.
 // Comparison:
@@ -58,11 +58,14 @@
 
 #include <iostream>
 #include <string>
-#include <cctype>
+
+#include <algorithm> // for std::transform and std::all_of
+#include <cctype>    // for std::tolower, std::toupper, std::isalnum
 
 using namespace std;
 
-int main() {
+int main()
+{
     // Declare and initialize a string
     string myString = "Hello, World!";
 
@@ -84,22 +87,22 @@ int main() {
     cout << "After replace(): " << myString << endl; // Output: After replace(): Hi
 
     // Element Access
-    cout << "Character at index 0: " << myString[0] << endl; // Output: Character at index 0: H
-    cout << "Character at index 0 (using at()): " << myString.at(0) << endl; // Output: Character at index 0 (using at()): H
-    cout << "First character: " << myString.front() << endl; // Output: First character: H
-    cout << "Last character: " << myString.back() << endl; // Output: Last character: i
+    cout << "Character at index 0: " << myString[0] << endl;                          // Output: Character at index 0: H
+    cout << "Character at index 0 (using at()): " << myString.at(0) << endl;          // Output: Character at index 0 (using at()): H
+    cout << "First character: " << myString.front() << endl;                          // Output: First character: H
+    cout << "Last character: " << myString.back() << endl;                            // Output: Last character: i
     cout << "Pointer to the underlying character array: " << myString.data() << endl; // Output: Pointer to the underlying character array: Hi
 
     // String Operations
-    cout << "Length of the string: " << myString.length() << endl; // Output: Length of the string: 2
-    cout << "Size of the string: " << myString.size() << endl; // Output: Size of the string: 2
-    cout << "Substring: " << myString.substr(0, 1) << endl; // Output: Substring: H
-    cout << "Find substring 'llo': " << myString.find("llo") << endl; // Output: Find substring 'llo': -1 (not found)
-    cout << "Reverse Find substring 'l': " << myString.rfind("l") << endl; // Output: Reverse Find substring 'l': 1
+    cout << "Length of the string: " << myString.length() << endl;            // Output: Length of the string: 2
+    cout << "Size of the string: " << myString.size() << endl;                // Output: Size of the string: 2
+    cout << "Substring: " << myString.substr(0, 1) << endl;                   // Output: Substring: H  myString.substr(2) = string from index 2 to right
+    cout << "Find substring 'llo': " << myString.find("llo") << endl;         // Output: Find substring 'llo': -1 (not found)
+    cout << "Reverse Find substring 'l': " << myString.rfind("l") << endl;    // Output: Reverse Find substring 'l': 1
     cout << "Comparison with 'Hello': " << myString.compare("Hello") << endl; // Output: Comparison with 'Hello': 1 (different)
 
     // Conversion
-    const char* cstr = myString.c_str();
+    const char *cstr = myString.c_str();
     cout << "C-style string: " << cstr << endl; // Output: C-style string: Hi
     int integer = stoi("123");
     cout << "String to integer: " << integer << endl; // Output: String to integer: 123
@@ -108,13 +111,15 @@ int main() {
 
     // Iterators
     cout << "Iterating through the string: ";
-    for (auto it = myString.begin(); it != myString.end(); ++it) {
+    for (auto it = myString.begin(); it != myString.end(); ++it)
+    {
         cout << *it << " "; // Output: Iterating through the string: H i
     }
     cout << endl;
 
     cout << "Reversed Iterating through the string: ";
-    for (auto it = myString.rbegin(); it != myString.rend(); ++it) {
+    for (auto it = myString.rbegin(); it != myString.rend(); ++it)
+    {
         cout << *it << " "; // Output: Reversed Iterating through the string: i H
     }
     cout << endl;
@@ -124,10 +129,42 @@ int main() {
     myString.reserve(10);
     cout << "Capacity of the string: " << myString.capacity() << endl; // Output: Capacity of the string: 10
 
+    // Reverse
+    reverse(myString.begin(), myString.end());
+
     // Swap
     string otherString = "Bye";
     myString.swap(otherString);
     cout << "After swap(): " << myString << " " << otherString << endl; // Output: After swap(): Bye Hi
+
+    string s = "Hello World 123";
+    char ch = s[0]; // First character of the string
+
+    cout << "Original string: " << s << endl;
+    cout << "Original character: " << ch << endl;
+
+    // Convert character to lowercase and uppercase
+    char lowerChar = tolower(static_cast<unsigned char>(ch));
+    char upperChar = toupper(static_cast<unsigned char>(ch));
+    cout << "Lowercase character: " << lowerChar << endl;
+    cout << "Uppercase character: " << upperChar << endl;
+
+    // Check if the character is alphanumeric
+    bool isCharAlphanumeric = isalnum(static_cast<unsigned char>(ch));
+    cout << "Is character alphanumeric: " << boolalpha << isCharAlphanumeric << endl;
+
+    // Convert the string to lowercase and uppercase
+    string lowerStr = s;
+    transform(lowerStr.begin(), lowerStr.end(), lowerStr.begin(), ::tolower);
+    cout << "Lowercase string: " << lowerStr << endl;
+
+    string upperStr = s;
+    transform(upperStr.begin(), upperStr.end(), upperStr.begin(), ::toupper);
+    cout << "Uppercase string: " << upperStr << endl;
+
+    // Check if the string is alphanumeric
+    bool isStrAlphanumeric = !s.empty() && all_of(s.begin(), s.end(), ::isalnum);
+    cout << "Is string alphanumeric: " << boolalpha << isStrAlphanumeric << endl;
 
     return 0;
 }
