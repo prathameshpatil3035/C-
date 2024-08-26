@@ -60,14 +60,28 @@
 #include <string>
 
 #include <algorithm> // for std::transform and std::all_of
-#include <cctype>    // for std::tolower, std::toupper, std::isalnum
+#include <cctype>    // for std::tolower, std::toupper, std::isalnum, isupper, islower
 
 using namespace std;
+
+// 'a' - 'A' = 32
+//  ASCII values :
+//      0 = 48, 9 = 57
+//      A = 65, Z = 90
+//      a = 97, z = 122
 
 int main()
 {
     // Declare and initialize a string
     string myString = "Hello, World!";
+
+    // Push back
+    myString.push_back('!');
+    std::cout << "After push_back: " << myString << std::endl; // Output: Hello, World!!
+
+    // Pop back
+    myString.pop_back();
+    std::cout << "After pop_back: " << myString << std::endl; // Output: Hello, World!
 
     // clear(): Clears the contents of the string.
     myString.clear();
@@ -85,6 +99,17 @@ int main()
     // Replace a portion of the string with another string
     myString.replace(0, 5, "Hi");
     cout << "After replace(): " << myString << endl; // Output: After replace(): Hi
+
+    // isupper and islower
+    if (isupper('A'))
+    {
+        cout << 'A' << " is an uppercase letter.\n";
+    }
+
+    if (islower('a'))
+    {
+        cout << 'a' << " is a lowercase letter.\n";
+    }
 
     // Element Access
     cout << "Character at index 0: " << myString[0] << endl;                          // Output: Character at index 0: H

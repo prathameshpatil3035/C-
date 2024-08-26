@@ -1,3 +1,5 @@
 array :
     kedence algorithm
-    Dutch National Flag Algorithm
+    Dutch National Flag Algorithm (sort 0s, 1s, 2s)
+    Euclidean Algorithm (for GCD)
+    Sieve of Eratosthenes Algorithm (all prime numbers till n)

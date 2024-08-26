@@ -6,11 +6,16 @@
 
 using namespace std;
 
-int main() {
+int main()
+{
     // Trigonometric Functions
     double angle = 45.0;
     double radians = angle * M_PI / 180.0;
-    
+
+    // min and max
+    int a = min(23, 24);
+    a = max(23, 24);
+
     cout << "sin(45 degrees) = " << sin(radians) << endl;
     // Output: sin(45 degrees) = 0.707107
     cout << "cos(45 degrees) = " << cos(radians) << endl;
@@ -111,13 +116,13 @@ int main() {
 
     string str = "12345";
 
-    int num = stoi(str);       // Converts to int
-    long lnum = stol(str);     // Converts to long
+    int num = stoi(str);          // Converts to int
+    long lnum = stol(str);        // Converts to long
     long long llnum = stoll(str); // Converts to long long
 
     string floatStr = "123.45";
-    float fnum = stof(floatStr);  // Converts to float
-    double dnum = stod(floatStr); // Converts to double
+    float fnum = stof(floatStr);         // Converts to float
+    double dnum = stod(floatStr);        // Converts to double
     long double ldnum = stold(floatStr); // Converts to long double
 
     int num = 12345;
@@ -128,7 +133,6 @@ int main() {
 
     double pi = 3.14;
     int intPi = static_cast<int>(pi); // Converts double to int
-
 
     return 0;
 }
