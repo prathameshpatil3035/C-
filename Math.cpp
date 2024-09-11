@@ -134,5 +134,13 @@ int main()
     double pi = 3.14;
     int intPi = static_cast<int>(pi); // Converts double to int
 
+    int m = 100000;
+    int k = 100000;
+    long val = m * k; // Without 1LL, this could cause overflow as it's done in 32-bit.
+
+    int m = 100000;
+    int k = 100000;
+    long val = m * 1LL * k; // Forces the multiplication to be done in 64-bit.
+
     return 0;
 }

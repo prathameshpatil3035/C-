@@ -4,7 +4,7 @@ Sorting
 Two Pointers
 Sliding Window
 Dynamic Programming
-Binary Search
+Binary Search  -  9, 12, 13, 18, 17
 Greedy Algorithms
 Bit Manipulation
 Prefix Sum
