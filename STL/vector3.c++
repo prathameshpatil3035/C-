@@ -106,15 +106,66 @@ int main()
         cout << n << " ";
     cout << endl; // Output: Removed 42: 3 1 4 1 9 2 6
 
-    // accumulate (similar to reduce in JavaScript)
-    int sum = accumulate(numbers.begin(), numbers.end(), 0);
-    cout << "Sum of numbers: " << sum << endl; // Output: Sum of numbers: 30
-
     // Join function (JavaScript-like join)
     cout << "Joined numbers: " << join(numbers, ", ") << endl; // Output: Joined numbers: 1, 2, 3, 4, 5, 6, 9
 
     // toString function (JavaScript-like toString)
     cout << "Numbers toString: " << toString(numbers) << endl; // Output: Numbers toString: 1, 2, 3, 4, 5, 6, 9
+
+    // accumulate (similar to reduce in JavaScript)
+    int sum = accumulate(numbers.begin(), numbers.end(), 0);
+    cout << "Sum of numbers: " << sum << endl; // Output: Sum of numbers: 30
+
+    vector<int> numbers = {1, 2, 3, 4, 5};
+
+    // 1. Sum of elements
+    int sum = accumulate(numbers.begin(), numbers.end(), 0);
+    cout << "Sum: " << sum << endl; // Output: Sum: 15
+
+    // 2. Product of elements
+    int product = accumulate(numbers.begin(), numbers.end(), 1, multiplies<int>());
+    cout << "Product: " << product << endl; // Output: Product: 120
+
+    // 3. Concatenate elements into a string (like toString in JavaScript)
+    string concatenated = accumulate(numbers.begin(), numbers.end(), string(""),
+                                     [](const string &a, int b)
+                                     { return a + (a.empty() ? "" : ", ") + to_string(b); });
+    cout << "Concatenated: " << concatenated << endl; // Output: Concatenated: 1, 2, 3, 4, 5
+
+    // 4. Logical AND of elements (if all elements are non-zero)
+    bool logical_and = accumulate(numbers.begin(), numbers.end(), true,
+                                  [](bool a, int b)
+                                  { return a && b; });
+    cout << "Logical AND (all non-zero): " << logical_and << endl; // Output: Logical AND (all non-zero): 1
+
+    // 5. Logical OR of elements (if any element is non-zero)
+    bool logical_or = accumulate(numbers.begin(), numbers.end(), false,
+                                 [](bool a, int b)
+                                 { return a || b; });
+    cout << "Logical OR (any non-zero): " << logical_or << endl; // Output: Logical OR (any non-zero): 1
+
+    // 6. Count the number of even numbers (custom reduction)
+    int even_count = accumulate(numbers.begin(), numbers.end(), 0,
+                                [](int count, int n)
+                                { return count + (n % 2 == 0); });
+    cout << "Even count: " << even_count << endl; // Output: Even count: 2
+
+    // 7. Maximum element using accumulate
+    int max_element = accumulate(numbers.begin(), numbers.end(), numbers[0],
+                                 [](int a, int b)
+                                 { return max(a, b); });
+    cout << "Max element: " << max_element << endl; // Output: Max element: 5
+
+    // 8. Sum of squares
+    int sum_of_squares = accumulate(numbers.begin(), numbers.end(), 0,
+                                    [](int sum, int n)
+                                    { return sum + n * n; });
+    cout << "Sum of squares: " << sum_of_squares << endl; // Output: Sum of squares: 55
+
+    // 9. Concatenate characters from a char array using accumulate
+    vector<char> chars = {'H', 'e', 'l', 'l', 'o'};
+    string concatenated_chars = accumulate(chars.begin(), chars.end(), string(""));
+    cout << "Concatenated chars: " << concatenated_chars << endl; // Output: Concatenated chars: Hello
 
     return 0;
 }

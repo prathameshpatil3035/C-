@@ -111,6 +111,11 @@ int main()
         cout << 'a' << " is a lowercase letter.\n";
     }
 
+    char c1 = '5', c2 = ' '; // #include <cctype>
+    // Possible characters for c2 that isspace can detect:
+    // ' ' (space), '\f' (form feed), '\n' (newline), '\r' (carriage return), '\t' (horizontal tab), '\v' (vertical tab)
+    cout << "c1 is digit: " << isdigit(c1) << ", c2 is space: " << isspace(c2) << endl; // Output: c1 is digit: 1, c2 is space: 1
+
     // Element Access
     cout << "Character at index 0: " << myString[0] << endl;                          // Output: Character at index 0: H
     cout << "Character at index 0 (using at()): " << myString.at(0) << endl;          // Output: Character at index 0 (using at()): H
