@@ -248,6 +248,14 @@ int main() {
         cout << endl;
     }
 
+    // 11. Remove_if
+    {
+        string s = "asd, sfj, lei#, *ue";
+        s.erase(std::remove_if(s.begin(), s.end(), [](char c) {
+            return !isalnum(c); // Remove non-alphanumeric characters
+        }), s.end());
+    }
+
     {
         
     char c1 = '5', c2 = ' '; // #include <cctype>

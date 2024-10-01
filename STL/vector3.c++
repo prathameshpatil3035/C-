@@ -106,6 +106,17 @@ int main()
         cout << n << " ";
     cout << endl; // Output: Removed 42: 3 1 4 1 9 2 6
 
+    // remove_if
+    // std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+
+    // Remove all even numbers
+    auto newEnd = std::remove_if(numbers.begin(), numbers.end(), [](int n) {
+        return n % 2 == 0; // condition to remove even numbers
+    });
+
+    // Actually remove the elements
+    numbers.erase(newEnd, numbers.end());
+
     // Join function (JavaScript-like join)
     cout << "Joined numbers: " << join(numbers, ", ") << endl; // Output: Joined numbers: 1, 2, 3, 4, 5, 6, 9
 
