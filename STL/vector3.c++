@@ -29,13 +29,13 @@ int main()
 {
     vector<int> numbers = {3, 1, 4, 1, 5, 9, 2, 6, 5};
 
-    // max_element
-    auto maxIt = max_element(numbers.begin(), numbers.end());
-    cout << "Max element: " << *maxIt << endl; // Output: Max element: 9
-
     // min_element
     auto minIt = min_element(numbers.begin(), numbers.end());
     cout << "Min element: " << *minIt << endl; // Output: Min element: 1
+
+    // max_element
+    auto maxIt = max_element(numbers.begin(), numbers.end());
+    cout << "Max element: " << *maxIt << endl; // Output: Max element: 9
 
     // minmax_element
     auto [minElem, maxElem] = minmax_element(numbers.begin(), numbers.end());
@@ -48,6 +48,13 @@ int main()
         cout << "Found element: " << *findIt << endl; // Output: Found element: 9
     else
         cout << "Element not found!" << endl;
+
+    // Binary search in a sorted vector
+    if (binary_search(vec.begin(), vec.end(), 30)) {
+        cout << "Element found using binary_search" << endl;
+    } else {
+        cout << "Element not found using binary_search" << endl;
+    }
 
     // count
     int countResult = count(numbers.begin(), numbers.end(), 1);
@@ -77,6 +84,18 @@ int main()
     vector<int> squaredNumbers(numbers.size());
     transform(numbers.begin(), numbers.end(), squaredNumbers.begin(), [](int n)
               { return n * n; });
+
+    transform(numbers.begin(), numbers.end(), numbers.begin(), [](int n) {
+            return n * n; // Square each number
+        });
+
+    vector<int> evenNumbers; // Vector to store filtered results
+
+    // Use copy_if to filter even numbers into evenNumbers vector
+    copy_if(numbers.begin(), numbers.end(), back_inserter(evenNumbers), [](int n) {
+        return n % 2 == 0; // Condition to filter even numbers
+    });
+
     cout << "Squared numbers: ";
     for (int n : squaredNumbers)
         cout << n << " ";
@@ -110,7 +129,7 @@ int main()
     // std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     // Remove all even numbers
-    auto newEnd = std::remove_if(numbers.begin(), numbers.end(), [](int n) {
+    auto newEnd = remove_if(numbers.begin(), numbers.end(), [](int n) {
         return n % 2 == 0; // condition to remove even numbers
     });
 
@@ -124,9 +143,6 @@ int main()
     cout << "Numbers toString: " << toString(numbers) << endl; // Output: Numbers toString: 1, 2, 3, 4, 5, 6, 9
 
     // accumulate (similar to reduce in JavaScript)
-    int sum = accumulate(numbers.begin(), numbers.end(), 0);
-    cout << "Sum of numbers: " << sum << endl; // Output: Sum of numbers: 30
-
     vector<int> numbers = {1, 2, 3, 4, 5};
 
     // 1. Sum of elements

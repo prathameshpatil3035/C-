@@ -251,19 +251,10 @@ int main() {
     // 11. Remove_if
     {
         string s = "asd, sfj, lei#, *ue";
-        s.erase(std::remove_if(s.begin(), s.end(), [](char c) {
+        s.erase(remove_if(s.begin(), s.end(), [](char c) {
             return !isalnum(c); // Remove non-alphanumeric characters
         }), s.end());
     }
-
-    {
-        
-    char c1 = '5', c2 = ' '; // #include <cctype>
-    // Possible characters for c2 that isspace can detect:
-    // ' ' (space), '\f' (form feed), '\n' (newline), '\r' (carriage return), '\t' (horizontal tab), '\v' (vertical tab)
-    cout << "c1 is digit: " << isdigit(c1) << ", c2 is space: " << isspace(c2) << endl; // Output: c1 is digit: 1, c2 is space: 1
-
-    }
-
+    
     return 0;
 }

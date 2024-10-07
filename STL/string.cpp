@@ -111,6 +111,10 @@ int main()
         cout << 'a' << " is a lowercase letter.\n";
     }
 
+    // Check if the character is alphanumeric
+    bool isCharAlphanumeric = isalnum(static_cast<unsigned char>(ch));
+    cout << "Is character alphanumeric: " << boolalpha << isCharAlphanumeric << endl;
+
     char c1 = '5', c2 = ' '; // #include <cctype>
     // Possible characters for c2 that isspace can detect:
     // ' ' (space), '\f' (form feed), '\n' (newline), '\r' (carriage return), '\t' (horizontal tab), '\v' (vertical tab)
@@ -178,10 +182,6 @@ int main()
     char upperChar = toupper(static_cast<unsigned char>(ch));
     cout << "Lowercase character: " << lowerChar << endl;
     cout << "Uppercase character: " << upperChar << endl;
-
-    // Check if the character is alphanumeric
-    bool isCharAlphanumeric = isalnum(static_cast<unsigned char>(ch));
-    cout << "Is character alphanumeric: " << boolalpha << isCharAlphanumeric << endl;
 
     // Convert the string to lowercase and uppercase
     string lowerStr = s;
