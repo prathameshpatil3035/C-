@@ -251,24 +251,24 @@ int main()
     // First Vector: 4 5 6
     // Second Vector: 1 2 3
 
-    std::vector<int> nums = {1, 2, 4, 4, 4, 5, 6, 7}; // Must be sorted for binary search to work
+    vector<int> nums = {1, 2, 4, 4, 4, 5, 6, 7}; // Must be sorted for binary search to work
     int target = 4;
 
     // Find the lower bound
-    auto lower = std::lower_bound(nums.begin(), nums.end(), target);
+    auto lower = lower_bound(nums.begin(), nums.end(), target);
     // Find the upper bound
-    auto upper = std::upper_bound(nums.begin(), nums.end(), target);
+    auto upper = upper_bound(nums.begin(), nums.end(), target);
 
     // Print results
     if (lower != nums.end())
-        std::cout << "Lower bound of " << target << " is at index: " << (lower - nums.begin()) << std::endl;
+        cout << "Lower bound of " << target << " is at index: " << (lower - nums.begin()) << endl;
     else
-        std::cout << "Lower bound not found.\n";
+        cout << "Lower bound not found.\n";
 
     if (upper != nums.end())
-        std::cout << "Upper bound of " << target << " is at index: " << (upper - nums.begin()) << std::endl;
+       cout << "Upper bound of " << target << " is at index: " << (upper - nums.begin()) << endl;
     else
-        std::cout << "Upper bound not found.\n";
+       cout << "Upper bound not found.\n";
 
     return 0;
 }
