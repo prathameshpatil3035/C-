@@ -32,12 +32,31 @@
 // end(): Returns an iterator to the end (point to the next position after last element in vector).
 // rbegin(): Returns a reverse iterator to the beginning.
 // rend(): Returns a reverse iterator to the end. (point to the previous position before first element in vector).
-// Comparison:
 
+// Comparison:
 // ==, !=, <, <=, >, >=: Comparison operators for vectors.
-// Swap:
+
+// swap(): swap 2 vectors
+
+// algorithms:
 
 // swap(): Swaps the contents of two vectors.
+// reverse
+// reverse_copy
+// lower_bound
+// upper_bound
+// max_element
+// min_element
+// minmax_element
+// find
+// count
+// all_of, any_of, none_of
+// copy - back_inserter
+// transform
+// unique (with erase)- array should be sorted and erase used to remove duplicates from end
+// replace - replace specific elements with provided one
+// remove (with erase)- used with erase and removed specific element
+// accumulate
 
 #include <iostream>
 #include <vector>
