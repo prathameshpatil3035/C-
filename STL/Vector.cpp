@@ -52,6 +52,7 @@
 // count
 // all_of, any_of, none_of
 // copy - back_inserter
+// copy_if - as filter
 // transform
 // unique (with erase)- array should be sorted and erase used to remove duplicates from end
 // replace - replace specific elements with provided one
@@ -285,9 +286,9 @@ int main()
         cout << "Lower bound not found.\n";
 
     if (upper != nums.end())
-       cout << "Upper bound of " << target << " is at index: " << (upper - nums.begin()) << endl;
+        cout << "Upper bound of " << target << " is at index: " << (upper - nums.begin()) << endl;
     else
-       cout << "Upper bound not found.\n";
+        cout << "Upper bound not found.\n";
 
     return 0;
 }

@@ -50,9 +50,12 @@ int main()
         cout << "Element not found!" << endl;
 
     // Binary search in a sorted vector
-    if (binary_search(vec.begin(), vec.end(), 30)) {
+    if (binary_search(numbers.begin(), numbers.end(), 30))
+    {
         cout << "Element found using binary_search" << endl;
-    } else {
+    }
+    else
+    {
         cout << "Element not found using binary_search" << endl;
     }
 
@@ -85,16 +88,18 @@ int main()
     transform(numbers.begin(), numbers.end(), squaredNumbers.begin(), [](int n)
               { return n * n; });
 
-    transform(numbers.begin(), numbers.end(), numbers.begin(), [](int n) {
-            return n * n; // Square each number
-        });
+    transform(numbers.begin(), numbers.end(), numbers.begin(), [](int n)
+              {
+                  return n * n; // Square each number
+              });
 
     vector<int> evenNumbers; // Vector to store filtered results
 
     // Use copy_if to filter even numbers into evenNumbers vector
-    copy_if(numbers.begin(), numbers.end(), back_inserter(evenNumbers), [](int n) {
-        return n % 2 == 0; // Condition to filter even numbers
-    });
+    copy_if(numbers.begin(), numbers.end(), back_inserter(evenNumbers), [](int n)
+            {
+                return n % 2 == 0; // Condition to filter even numbers
+            });
 
     cout << "Squared numbers: ";
     for (int n : squaredNumbers)
@@ -129,9 +134,10 @@ int main()
     // std::vector<int> numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
 
     // Remove all even numbers
-    auto newEnd = remove_if(numbers.begin(), numbers.end(), [](int n) {
-        return n % 2 == 0; // condition to remove even numbers
-    });
+    auto newEnd = remove_if(numbers.begin(), numbers.end(), [](int n)
+                            {
+                                return n % 2 == 0; // condition to remove even numbers
+                            });
 
     // Actually remove the elements
     numbers.erase(newEnd, numbers.end());
