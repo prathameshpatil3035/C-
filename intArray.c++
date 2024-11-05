@@ -162,5 +162,10 @@ int main()
                 return n % 2 == 0; // Condition to filter even numbers
             });
 
+    copy_if(begin(numbers), end(numbers), back_inserter(evenNumbers), [](int n)
+            {
+                return n % 2 == 0; // Condition to filter even numbers
+            });
+
     return 0;
 }

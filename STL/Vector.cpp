@@ -40,7 +40,7 @@
 
 // algorithms:
 
-// swap(): Swaps the contents of two vectors.
+// swap - Swaps the elements of a vectors.
 // reverse
 // reverse_copy
 // lower_bound
@@ -49,14 +49,16 @@
 // min_element
 // minmax_element
 // find
+// binary_search
 // count
 // all_of, any_of, none_of
 // copy - back_inserter
-// copy_if - as filter
+// copy_if (with back_inserter) - as filter
 // transform
 // unique (with erase)- array should be sorted and erase used to remove duplicates from end
 // replace - replace specific elements with provided one
 // remove (with erase)- used with erase and removed specific element
+// remove_if
 // accumulate
 
 #include <iostream>
