@@ -54,5 +54,19 @@ int main() {
     string strFromLongLong = to_string(numToStrLongLong);
     cout << "String from long long: " << strFromLongLong << endl; // Output: String from long long: 123456789012345
 
+    char c = static_cast<char>(97);
+    cout << c; // a
+
+    char c1 = 97;
+    cout << c1; // a
+
+    char five = '5';
+    int num =  five - '0';
+
+    // string s = "hello" + "hi" // not allowed
+    string s = string("hello") + "hi"; // allowed
+
+    string c = string(1, static_cast<char>(97)); // convert 97 into string "a" string constructor string(size_type n, char c) n = no. of times char c 
+
     return 0;
 }

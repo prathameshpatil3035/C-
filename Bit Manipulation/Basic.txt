@@ -16,6 +16,9 @@ XOR (^) Operator:
         0 ^   0  ^  0 ^ 4  ^ 0 
         0 ^ 4 = 4
 
+        a << n -> a * 2^n
+        a >> n -> a / 2^n
+
 
 Right Shift Operator (>>):
     shift bits to the right by k positions
