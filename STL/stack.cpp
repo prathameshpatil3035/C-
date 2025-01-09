@@ -76,6 +76,11 @@ public:
     stack<int> st1, st2;
     st1.swap(st2);
     }
+
+    compareTwoStacks(){
+        stack<int> s1, s2;
+        return s1 == s2;
+    }
 };
 
 int main() {

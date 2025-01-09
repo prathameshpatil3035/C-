@@ -142,5 +142,21 @@ int main()
     int k = 100000;
     long val = m * 1LL * k; // Forces the multiplication to be done in 64-bit.
 
+    // Unsigned Substraction
+    unsigned int result = -122 - -112;
+
+    int result = -122 - (-112); // Use parentheses for clarity
+    cout << result << endl; // Output: -10
+
+    unsigned int a = -122; // This will convert -122 to a large positive number
+    unsigned int b = -112; // Same here
+    int result = static_cast<int>(a) - static_cast<int>(b);
+    cout << result << endl; // Output: -10
+
+    int a = -122;
+    int b = -112;
+    unsigned int result = static_cast<unsigned int>(a - b); // Explicitly convert result to unsigned
+    cout << result << endl; // Output depends on how you want to handle negatives
+
     return 0;
 }
